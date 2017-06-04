@@ -1,0 +1,20 @@
+#third party theme plugins & example conf files
+lain/
+freedesktop/
+eminent/
+*~*
+
+
+# third party themes and holo+
+blackburn  
+default  
+holo
+holo+   
+multicolor  
+powerarrow-dark 
+steamburn
+copland    
+dremora  
+powerarrow  
+rainbow   
+vertex
