@@ -255,7 +255,7 @@ root.buttons(gears.table.join(
 -- {{{ Key bindings
 globalkeys = gears.table.join(
 -- {{{ dlo user bindings
-    awful.key({ modkey, "Shift" }, "t", awful.titlebar.toggle,
+    awful.key({ modkey, "Shift"   }, "t", awful.titlebar.toggle,
               {description="toggle titlebar visibility"}),
 -- {{{ end of user bindings   
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
