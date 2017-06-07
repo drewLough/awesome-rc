@@ -17,7 +17,7 @@ theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.border_width  = 10
+theme.border_width  = 5
 theme.border_normal = "#222222"
 theme.border_focus  = "#222222"
 theme.border_marked = "#91231c"
@@ -96,7 +96,8 @@ theme.awesome_icon = "~/.config/awesome/themes/rook/icons/awesome16.png"
 -- Define the icon theme for application icons. If not set then the icons 
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used. normally
 -- value is nil
-theme.icon_theme = /usr/share/icons/Vibrancy-Full-Dark-Graphite
+theme.icon_theme = nil
+--"/usr/share/icons/Vibrancy-Full-Dark-Graphite/"
 
 return theme
 -- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
