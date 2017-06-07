@@ -3,7 +3,8 @@ lain/
 freedesktop/
 eminent/
 *~*
-
+#swap files
+*.swp
 
 # third party themes and holo+
 blackburn  
