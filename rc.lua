@@ -254,10 +254,6 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
--- {{{ dlo user bindings
-    awful.key({ modkey, "Shift"   }, "t", awful.titlebar.toggle,
-              {description="toggle titlebar visibility"}),
--- {{{ end of user bindings   
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
@@ -502,14 +498,18 @@ awful.rules.rules = {
         }
       }, properties = { floating = true }},
 
-    -- Add titlebars to normal clients and dialogs
+    -- Add titlebars to normal clients and dialogs *turned off
     { rule_any = {type = { "normal", "dialog" }
-      }, properties = { titlebars_enabled = true }
+      }, properties = { titlebars_enabled = false }
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
     -- { rule = { class = "Firefox" },
     --   properties = { screen = 1, tag = "2" } },
+
+-- {{{ dlo's custom entries
+	awful.key({ modkey, "Shift" }, "t", awful.titlebar.toggle),
+
 }
 -- }}}
 
@@ -581,3 +581,41 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
+
+-- battery warning
+-- created by bpdp
+
+local function trim(s)
+  return s:find'^%s*$' and '' or s:match'^%s*(.*%S)'
+end
+
+local function bat_notification()
+  
+  local f_capacity = assert(io.open("/sys/class/power_supply/BAT0/capacity", "r"))
+  local f_status = assert(io.open("/sys/class/power_supply/BAT0/status", "r"))
+
+  local bat_capacity = tonumber(f_capacity:read("*all"))
+  local bat_status = trim(f_status:read("*all"))
+
+  if (bat_capacity <= 10 and bat_status == "Discharging") then
+    naughty.notify({ title      = "Battery Warning"
+      , text       = "Battery low! " .. bat_capacity .."%" .. " left!"
+      , fg="#ffffff"
+      , bg="#222222"
+      , timeout    = 15
+      , position   = "bottom_left"
+    })
+  end
+end
+
+battimer = timer({timeout = 120})
+battimer:connect_signal("timeout", bat_notification)
+battimer:start()
+
+-- end here for battery warning
+
+
+
+
+
+
