@@ -1,10 +1,20 @@
-
 --[[
 --
---	 io's AwesomeWM run commands::
+--	 ioAV AwesomeWM rc
 --
 --]]
 
+-- {{{ User Variables
+-- Themes define colours, icons, font and wallpapers.
+-- Some options have been extracted to variables for easier configuration
+local chosen_theme = "rook"
+local modkey       = "Mod4"
+local altkey       = "Mod1"
+local terminal     = "urxvt"
+local editor       = os.getenv("EDITOR") or "vim" or "nano" or "vi"
+local browser      = "firefox"
+
+-- {{{ Libraries
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -45,16 +55,6 @@ do
 end
 -- }}}
 
--- {{{ Variable definitions
--- Themes define colours, icons, font and wallpapers.
--- Some options have been extracted to variables for easier configuration
-local chosen_theme = "rook"
-local modkey       = "Mod4"
-local altkey       = "Mod1"
-local terminal     = "urxvt"
-local editor       = os.getenv("EDITOR") or "nano" or "vi"
-local browser      = "firefox"
-
 -- Define Theme path, and select theme based on chosen_theme variable
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
 beautiful.init(theme_path)
@@ -66,13 +66,6 @@ beautiful.init(theme_path)
 awful.util.terminal = terminal
 -- editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
-
--- Default modkey. ***This has been commented out because Modkey is define in the variable section***
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
--- modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -115,13 +108,13 @@ end
 myawesomemenu = {
    { "hotkeys", function() return false, hotkeys_popup.show_help end},
    { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
+   { "config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end}
 }
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "open terminal", terminal }
+                                    { "terminal", terminal }
                                   }
                         })
 
