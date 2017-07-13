@@ -11,7 +11,7 @@ local chosen_theme = "rook"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvt"
-local editor       = os.getenv("EDITOR") or "vim" or "nano" or "vi"
+local editor       = os.getenv("EDITOR") or "emacs" or "vim" or "nano" or "vi"
 local browser      = "firefox"
 
 -- {{{ Libraries
@@ -125,7 +125,7 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
 
--- Keyboard map indicator and switcher
+-- Keyboard map indicator and switche"%H:%M", 10)
 mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- {{{ Wibar
